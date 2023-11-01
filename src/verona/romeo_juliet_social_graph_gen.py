@@ -28,8 +28,8 @@ class RomeoAndJulietSocial(GraphGenerator):
 
     layer_names = ['family', 'friends', 'work', 'public', 'events']
 
-    print(layer_names)
-    print(layer_probs)
+    # print(layer_names)
+    # print(layer_probs)
     
 
     def __init__(self, **kwargs):
@@ -50,9 +50,9 @@ class RomeoAndJulietSocial(GraphGenerator):
         self.G.add_edge(3, 4, type=FAMILY)
         self.G.add_edge(3, 1, type=FAMILY)
         self.G.add_edge(4, 1, type=FAMILY)
-        self.G.add_edge(3, 4, type=FRIENDS)
-        self.G.add_edge(3, 1, type=FRIENDS)
-        self.G.add_edge(4, 1, type=FRIENDS)
+        # self.G.add_edge(3, 4, type=FRIENDS)
+        # self.G.add_edge(3, 1, type=FRIENDS)
+        # self.G.add_edge(4, 1, type=FRIENDS)
         self.G.add_node(5, label='Benvolio', sex=0, age=17)
         self.G.add_edge(1, 5, type=FAMILY)
         self.G.add_edge(3, 5, type=FAMILY)
@@ -64,23 +64,23 @@ class RomeoAndJulietSocial(GraphGenerator):
         self.G.add_edge(2, 6, type=FAMILY)
         self.G.add_edge(2, 7, type=FAMILY)
         self.G.add_edge(6, 7, type=FAMILY)
-        self.G.add_edge(2, 6, type=FRIENDS)
-        self.G.add_edge(2, 7, type=FRIENDS)
-        self.G.add_edge(6, 7, type=FRIENDS)
+        # self.G.add_edge(2, 6, type=FRIENDS)
+        # self.G.add_edge(2, 7, type=FRIENDS)
+        # self.G.add_edge(6, 7, type=FRIENDS)
         self.G.add_node(8, label='Tybalt', sex=0, age=17)
         self.G.add_edge(8, 2, type=FAMILY)
         self.G.add_edge(8, 6, type=FAMILY)
         self.G.add_edge(8, 7, type=FAMILY)
-        self.G.add_edge(8, 2, type=FRIENDS)
-        self.G.add_edge(8, 6, type=FRIENDS)
-        self.G.add_edge(8, 7, type=FRIENDS)
+        # self.G.add_edge(8, 2, type=FRIENDS)
+        # self.G.add_edge(8, 6, type=FRIENDS)
+        # self.G.add_edge(8, 7, type=FRIENDS)
 
         # House of Prince of Verona
         self.G.add_node(9, label='Prince Escalus', sex=0, age=60)
         self.G.add_node(10, label='Paris', sex=0, age=24)
         self.G.add_node(11, label='Mercutio', sex=0, age=20)
         self.G.add_edge(9, 10, type=FAMILY)
-        self.G.add_edge(9, 10, type=FRIENDS)
+        # self.G.add_edge(9, 10, type=FRIENDS)
         self.G.add_edge(9, 11, type=FAMILY)
         self.G.add_edge(10, 11, type=FAMILY)
         self.G.add_edge(1, 11, type=FRIENDS)
@@ -404,7 +404,7 @@ class RomeoAndJulietSocial(GraphGenerator):
         # weights from layer probs for now
 
         for (u, v, k, d) in self.G.edges(data=True, keys=True):
-            print(u,v,k,d)
+#            print(u,v,k,d)
             self.G[u][v][k]['weight'] = self.layer_probs[d['type']]
 
     def write_to_csv(self, prefix='raj-social'):
