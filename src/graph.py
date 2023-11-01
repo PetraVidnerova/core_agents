@@ -75,3 +75,18 @@ class Graph():
             )
 
         return graph
+
+
+    def to_nx_graph(self):
+        graph = nx.Graph()
+
+        for node in self.nodes:
+            graph.add_node(self.node_numbers[node])
+
+        for a, b in zip(self.in_nodes, self.out_nodes):
+            graph.add_edge(
+                self.node_numbers[a],
+                self.node_numbers[b]
+            )
+
+        return graph
