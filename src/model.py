@@ -67,6 +67,6 @@ class BaseModel():
         print()
 
 
-    def history_to_df(self):
-        return self.history.to_df()
+    def history_to_df(self, include_node_states=False):
+        return self.history.to_df(include_node_states=include_node_states)
     
