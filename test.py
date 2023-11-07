@@ -1,3 +1,4 @@
+import networkx as nx
 from networkx import degree_centrality, eigenvector_centrality
 import pandas as pd
 from tqdm import tqdm
@@ -16,7 +17,7 @@ BETAS = [0.01, 0.05, 0.1, 0.5]
 
 TASK = "Twitter"
 
-METRIC = "eigenvector"
+METRIC = "pagerank"
 
 
 def run(g, seed, beta=BETA):
@@ -60,6 +61,8 @@ def main():
 
     if METRIC == "eigenvector":
         centrality = eigenvector_centrality(G)
+    elif METRIC == "pagerank":
+        centrality = nx.pagerank(G)
     else:
         raise NotImplementedError
     # print(centrality)
