@@ -96,10 +96,11 @@ class Graph():
         for node in self.nodes:
             graph.add_node(self.node_numbers[node])
 
-        for a, b in zip(self.in_nodes, self.out_nodes):
+        for i, (a, b) in  enumerate(zip(self.in_nodes, self.out_nodes)):
             graph.add_edge(
                 self.node_numbers[a],
-                self.node_numbers[b]
+                self.node_numbers[b],
+                weigth = self.e_weight[i]
             )
 
         return graph
@@ -112,10 +113,13 @@ class Graph():
             graph.add_node(self.node_numbers[node])
 
         for i, (a, b) in enumerate(zip(self.in_nodes, self.out_nodes)):
-            graph.add_edge(
-                self.node_numbers[a],
-                self.node_numbers[b],
-                weight = self.e_weight[i]
-            )
+            if graph.has_edge(a, b):
+                graph.edges[a, b]["weight"] += self.e_weight[i]
+            else:
+                graph.add_edge(
+                    self.node_numbers[a],
+                    self.node_numbers[b],
+                    weight = self.e_weight[i]
+                )
 
         return graph

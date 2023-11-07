@@ -12,9 +12,11 @@ BETA = 0.1
 
 MODEL = "SIR"
 #BETAS = [0.1, 0.2, 0.3]
-BETAS = [0.5]
+BETAS = [0.01, 0.05, 0.1, 0.5]
 
-TASK = "Verona"
+TASK = "Twitter"
+
+METRIC = "eigenvector"
 
 
 def run(g, seed, beta=BETA):
@@ -56,7 +58,10 @@ def main():
 
     print(G)
 
-    centrality = eigenvector_centrality(G)
+    if METRIC == "eigenvector":
+        centrality = eigenvector_centrality(G)
+    else:
+        raise NotImplementedError
     # print(centrality)
     # exit()
     nodes, values = centrality.keys(), centrality.values()
@@ -88,7 +93,7 @@ def main():
                 dfs.append(df)
 
     df_result = pd.concat(dfs)
-    df_result.to_csv(f"{TASK}_{MODEL}_twitter_results_eigenvalue.csv")
+    df_result.to_csv(f"{TASK}_{MODEL}_results_{METRIC}.csv")
 
 
 if __name__ == "__main__":
